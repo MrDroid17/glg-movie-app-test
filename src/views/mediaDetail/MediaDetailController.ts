@@ -13,7 +13,7 @@ export class MediaDetailController {
   }
 
   public async getMedia(media_type: string, id: string): Promise<void> {
-    const response: any = this.apiInstance.get(`${media_type}/${id}`);
+    const response: any = await this.apiInstance.get(`${media_type}/${id}`);
     this.mediaDetailStore.setDocument(response.data.media);
   }
 }
