@@ -1,13 +1,13 @@
 import axios, { AxiosInstance } from "axios";
 import { MediaType, Movie } from "../../src/definitions/Movie";
 
-const { MOVIE_DB_API_KEY, MOVIE_DB_API_BASE_URL } = process.env;
+const { MOVIE_DB_API_KEY, MOVIE_DB_API_BASE_URL, MOVIE_DB_ACCESS_TOKEN } = process.env;
 
 export class MovieDB {
   private apiInstance: AxiosInstance;
   constructor() {
     this.apiInstance = axios.create({
-      headers: { "Content-Type": " application/json;charset=utf-8", Authorization: `Bearer ${MOVIE_DB_API_KEY}` },
+      headers: { "Content-Type": "application/json;charset=utf-8", Authorization: `Bearer ${MOVIE_DB_ACCESS_TOKEN}` },
       baseURL: MOVIE_DB_API_BASE_URL,
     });
   }

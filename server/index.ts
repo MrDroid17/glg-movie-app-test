@@ -2,8 +2,11 @@ import express, { Request, Response } from "express";
 import path from "path";
 import cors from "cors";
 import { server } from "./mocks/node";
-
+import dotenv from "dotenv";
+dotenv.config();
+// dotenv.config({ path: path.resolve(__dirname, "../.env") });
 import { MediaRouter } from "./controllers/media/MediaRouter";
+
 
 if (process.env.VITE_MOCK_RESULTS === "true") {
   server.listen();
