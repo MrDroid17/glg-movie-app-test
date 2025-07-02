@@ -1,12 +1,11 @@
-#!/usr/bin/env bash
-
-function _which () {
-  which "$1" > /dev/null
-}
-
-for cmd in base64 docker; do
-  if ! _which $cmd; then
-    echo "You must install the command `$cmd`" && exit 1
-  fi
-done
-
+@echo off
+where base64 >nul 2>&1
+if %ERRORLEVEL% neq 0 (
+  echo You must install the command `base64`
+  exit /b 1
+)
+where docker >nul 2>&1
+if %ERRORLEVEL% neq 0 (
+  echo You must install the command `docker`
+  exit /b 1
+)

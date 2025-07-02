@@ -3,8 +3,8 @@ import path from "path";
 import cors from "cors";
 import { server } from "./mocks/node";
 import dotenv from "dotenv";
-dotenv.config();
-// dotenv.config({ path: path.resolve(__dirname, "../.env") });
+// dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, "../.env.development") });
 import { MediaRouter } from "./controllers/media/MediaRouter";
 
 
