@@ -2,8 +2,11 @@ import express, { Request, Response } from "express";
 import path from "path";
 import cors from "cors";
 import { server } from "./mocks/node";
-
+import dotenv from "dotenv";
+// dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, "../.env.development") });
 import { MediaRouter } from "./controllers/media/MediaRouter";
+
 
 if (process.env.VITE_MOCK_RESULTS === "true") {
   server.listen();
@@ -12,7 +15,7 @@ if (process.env.VITE_MOCK_RESULTS === "true") {
 const app = express();
 const port = process.env.API_PORT;
 
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "http://localhost:3031" }));
 
 app.use(express.static(path.join(__dirname, "../build")));
 
