@@ -8,6 +8,7 @@ import Link from "@mui/material/Link";
 
 import { useStores } from "../../hooks/useStores";
 import { MediaDetailController } from "./MediaDetailController";
+import { useErrorHandler } from "../../hooks/useErrorHandler";
 
 import "./MediaDetail.scss";
 
@@ -18,17 +19,22 @@ export const MediaDetailView = observer(() => {
   const { media } = mediaDetailStore;
 
   const movieController = new MediaDetailController(mediaDetailStore);
+  const { showError, SnackbarAlert } = useErrorHandler();
 
   useEffect(() => {
     if (!id || !media_type) return;
     (async () => {
-      await movieController.getMedia(media_type, id);
+      try {
+        await movieController.getMedia(media_type, id);
+      } catch (err: any) {
+        showError(err?.message || "Failed to load media details");
+      }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [media_type, id]);
 
   return (
     <div>
+      <SnackbarAlert />
       {media ? (
         <div>
           <div className="navigation">
@@ -53,3 +59,5 @@ export const MediaDetailView = observer(() => {
     </div>
   );
 });
+
+export default MediaDetailView;

@@ -1,19 +1,30 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { MediaView } from "./views/media/MediaView";
-import { MediaDetailView } from "./views/mediaDetail/MediaDetailView";
+import { lazy, Suspense } from "react";
 
 import "./index.scss";
 const { VITE_MOCK_RESULTS } = import.meta.env;
 
+// Lazy load views
+const MediaView = lazy(() => import("./views/media/MediaView"));
+const MediaDetailView = lazy(() => import("./views/mediaDetail/MediaDetailView"));
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MediaView />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <MediaView />
+      </Suspense>
+    ),
   },
   {
     path: "/:media_type/:id?",
-    element: <MediaDetailView />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <MediaDetailView />
+      </Suspense>
+    ),
   },
 ]);
 async function enableMocking() {

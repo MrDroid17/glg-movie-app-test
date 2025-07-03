@@ -30,4 +30,45 @@
     padding: 0;
     color: rgba(0, 0, 0, 0.6);
   }
+
+  .skeleton-image {
+    width: 100%;
+    height: calc(200px * 1.5);
+    border-radius: 8px;
+    background: #e0e0e0;
+    margin-bottom: 8px;
+  }
+  .skeleton-title {
+    width: 70%;
+    height: 20px;
+    border-radius: 4px;
+    background: #e0e0e0;
+    margin: 10px 0 6px 0;
+  }
+  .skeleton-date {
+    width: 40%;
+    height: 16px;
+    border-radius: 4px;
+    background: #e0e0e0;
+  }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
 }
